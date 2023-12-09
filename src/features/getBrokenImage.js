@@ -44,6 +44,7 @@ function getBrokenImage(imagePath, size) {
     const sourceImage = new Image();
     sourceImage.crossOrigin = "anonymous";
     sourceImage.src = imagePath;
+    // console.log(876);
     sourceImage.onload = () => {
       const newCanvasArray = [];
       // Создаем 16 канвасов и разбиваем изображение

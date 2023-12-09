@@ -1,11 +1,7 @@
 function PartOfImage({ src, index, onKeyDown }) {
   return (
-    <div key={index} style={{ margin: "3px" }} onKeyDown={onKeyDown}>
-      <img
-        alt={`Part ${index}`}
-        src={src}
-        style={{ width: "150px", height: "auto" }}
-      />
+    <div key={index} onKeyDown={onKeyDown} className="part-image-box">
+      <img alt={`Part ${index}`} src={src} className="part-image" />
     </div>
   );
 }

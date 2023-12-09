@@ -1,10 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
 import { changeArr } from "../features/changeArr";
 import { getIndexNull } from "../features/getIndexNull";
+import { isMoved } from "../features/isMoved";
 
 const initialState = {
-  size: 9,
+  size: 16,
   url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ2zgLauMnxfVrrLoVZPgP2bokLkPjVeX10Q&usqp=CAU",
+  //https://i.pinimg.com/736x/07/32/6c/07326c595630f8b71cde53df817b397e.jpg
   isGame: false,
   brokenImage: [],
   drivingDirections: {
@@ -22,9 +24,11 @@ function reducer(state, action) {
     case "startGame":
       return {
         ...state,
+        size: action.payload.sizeField,
+        url: action.payload.image.url ? action.payload.image.url : state.url,
         isGame: true,
-        freePlace: state.size - 1,
-        moveStep: Math.sqrt(state.size),
+        freePlace: action.payload.sizeField - 1,
+        moveStep: Math.sqrt(action.payload.sizeField),
       };
     case "loadData":
       return {
@@ -32,6 +36,7 @@ function reducer(state, action) {
         brokenImage: action.payload,
       };
     case "ArrowUp": {
+      if (!isMoved("ArrowUp", state.brokenImage)) return state;
       const newPlace = state.freePlace - state.moveStep;
       return {
         ...state,
@@ -40,6 +45,7 @@ function reducer(state, action) {
       };
     }
     case "ArrowLeft": {
+      if (!isMoved("ArrowLeft", state.brokenImage)) return state;
       const newPlace = state.freePlace - 1;
       return {
         ...state,
@@ -48,6 +54,7 @@ function reducer(state, action) {
       };
     }
     case "ArrowDown": {
+      if (!isMoved("ArrowDown", state.brokenImage)) return state;
       const newPlace = state.freePlace + state.moveStep;
       return {
         ...state,
@@ -56,6 +63,7 @@ function reducer(state, action) {
       };
     }
     case "ArrowRight": {
+      if (!isMoved("ArrowRight", state.brokenImage)) return state;
       const newPlace = state.freePlace + 1;
       return {
         ...state,
@@ -81,12 +89,12 @@ function reducer(state, action) {
 }
 
 function GameProvaider({ children }) {
-  const [{ isGame, brokenImage, size, drivingDirections }, dispatch] =
+  const [{ isGame, brokenImage, size, drivingDirections, url }, dispatch] =
     useReducer(reducer, initialState);
 
   return (
     <GameContext.Provider
-      value={{ isGame, brokenImage, size, drivingDirections, dispatch }}
+      value={{ isGame, brokenImage, size, drivingDirections, dispatch, url }}
     >
       {children}
     </GameContext.Provider>
