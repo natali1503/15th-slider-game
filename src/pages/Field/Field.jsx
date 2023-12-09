@@ -72,21 +72,6 @@ function Field() {
   return (
     <Сontainer>
       <div className="box">
-        {/* {isShowImage && (
-          <div className="show-image">
-            <div>
-              <Button
-                className="btn-show-image"
-                onClick={() => setIsShowImage((isShow) => !isShow)}
-              >
-                <IoCloseSharp />
-              </Button>
-            </div>
-            <div>
-              <img src={url} alt="" />
-            </div>
-          </div>
-        )} */}
         <div className="btn-menu">
           <Button className="button" onClick={() => handleClickNewGame()}>
             Начать сначала
@@ -110,7 +95,7 @@ function Field() {
               </Button>
             </div>
             <div>
-              <img src={url} alt="" />
+              <img src={url} alt="" className="img-show" />
             </div>
           </div>
         ) : (

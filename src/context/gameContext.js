@@ -25,7 +25,9 @@ function reducer(state, action) {
       return {
         ...state,
         size: action.payload.sizeField,
-        url: action.payload.image.url ? action.payload.image.url : state.url,
+        url: action.payload.image.fileImage
+          ? action.payload.image.fileImage
+          : state.url,
         isGame: true,
         freePlace: action.payload.sizeField - 1,
         moveStep: Math.sqrt(action.payload.sizeField),

@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
-const imageUrl =
-  "https://i.pinimg.com/736x/07/32/6c/07326c595630f8b71cde53df817b397e.jpg";
+export default function Img2() {
+  const imageUpload = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
 
-export default function Test() {
-  const [img, setImg] = useState();
-
-  const fetchImage = async () => {
-    const res = await fetch(imageUrl, { mode: "no-cors" });
-    console.log(res);
-    // const imageBlob = await res.blob();
-    // console.log(imageBlob);
-    // const imageObjectURL = URL.createObjectURL(imageBlob);
-    // console.log(imageBlob);
-    // setImg(imageObjectURL);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64StringUS = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+      localStorage.setItem("wallpaperXXX", base64StringUS);
+      const myImage = localStorage.getItem("wallpaperXXX");
+      var bannerImg = document.getElementById("tableBanner");
+      bannerImg = document.getElementById("tableBanner");
+      bannerImg.src = "data:image/png;base64," + myImage;
+      //document.body.style.background = `url(data:image/png;base64,${base64StringUS})`;
+    };
+    reader.readAsDataURL(file);
   };
-
-  useEffect(() => {
-    fetchImage();
-  }, []);
-
   return (
-    <>
-      <img src={img} alt="icons" />
-    </>
+    <div className="App">
+      <input
+        type="file"
+        id="imageFile"
+        name="imageFile"
+        onChange={imageUpload}
+      />
+      <img alt="try2" id="tableBanner" />
+    </div>
   );
 }

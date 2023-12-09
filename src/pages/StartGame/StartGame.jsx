@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { getRandomBrokenImage } from "../../features/getRandomBrokenImage";
@@ -8,9 +8,10 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Rules from "../Rules/Rules";
 import "./startGame.css";
+import { saveImgToLocalStorage } from "../../features/saveImgToLocalStorage";
 
 function StartGame() {
-  const { isGame, size, dispatch, url } = useGame();
+  const { size, dispatch, url } = useGame();
   const [isOpenRules, setIsOpenRules] = useState(false);
   const navigate = useNavigate();
   const {
@@ -25,11 +26,31 @@ function StartGame() {
   function onSubmit(data, e) {
     const nameButton = e.nativeEvent.submitter.name;
     if (nameButton === "openRuls") setIsOpenRules((isOpen) => !isOpen);
-    else if (nameButton === "startGame") {
+    else if (nameButton === "startGame" && data.selectImage === "user") {
+      saveImgToLocalStorage(data.fileImage[0]).then((urlImg) => {
+        dispatch({
+          type: "startGame",
+          payload: {
+            image: {
+              selectImage: data.selectImage,
+              fileImage: urlImg,
+            },
+            sizeField: Number(data.sizeField),
+          },
+        });
+        getRandomBrokenImage(size, urlImg).then((res) => {
+          dispatch({ type: "loadData", payload: res });
+          navigate("/playingField");
+        });
+      });
+    } else if (nameButton === "startGame" && data.selectImage === "standart") {
       dispatch({
         type: "startGame",
         payload: {
-          image: { selectImage: data.selectImage, url: data.urlImage },
+          image: {
+            selectImage: data.selectImage,
+            fileImage: url,
+          },
           sizeField: Number(data.sizeField),
         },
       });
@@ -74,25 +95,16 @@ function StartGame() {
               <label className="label">
                 <input
                   className="input"
+                  type={watchSelectImage ? "file" : "hidden"}
                   placeholder="https//:"
-                  {...register(
-                    "urlImage",
-
-                    {
-                      pattern: {
-                        value: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/,
-                        message: "Укажи ссылку в формате http",
-                      },
-                      required: watchSelectImage
-                        ? "Укажи адрес картинки"
-                        : false,
-                    }
-                  )}
-                  type={watchSelectImage ? "text" : "hidden"}
+                  {...register("fileImage", {
+                    required: watchSelectImage
+                      ? "Необходимо выбрать изображение"
+                      : false,
+                  })}
                 ></input>
-
-                {watchSelectImage && errors.urlImage && (
-                  <div className="error-form">{errors.urlImage.message}</div>
+                {watchSelectImage && errors.fileImage && (
+                  <div className="error-form">{errors.fileImage.message}</div>
                 )}
               </label>
             </div>
