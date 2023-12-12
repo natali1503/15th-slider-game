@@ -24,6 +24,7 @@ function Field() {
   const navigate = useNavigate();
   const [isShowImage, setIsShowImage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   function handleClick(direction, brokenImage) {
     dispatch({ type: direction });
 
@@ -36,13 +37,22 @@ function Field() {
   useEffect(
     function () {
       function handleKeyDown(e) {
+        const typeDirection = [
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowRight",
+        ];
         const direction = e.key;
-        dispatch({ type: direction });
-        dispatch({
-          type: "changeDrivingDirections",
-        });
+        if (!typeDirection.includes(direction)) return;
+        else {
+          dispatch({ type: direction });
+          dispatch({
+            type: "changeDrivingDirections",
+          });
 
-        return;
+          return;
+        }
       }
       document.addEventListener("keydown", handleKeyDown);
       return () => {

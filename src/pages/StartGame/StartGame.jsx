@@ -11,7 +11,6 @@ import "./startGame.css";
 import { saveImgToLocalStorage } from "../../features/saveImgToLocalStorage";
 import Loader from "../../ui/Loader/Loader";
 import Header from "../../ui/Header/Header";
-import Modal from "../../ui/Modal/Modal";
 
 function StartGame() {
   const { size, dispatch, url } = useGame();
