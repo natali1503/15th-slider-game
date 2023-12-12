@@ -9,10 +9,14 @@ import Form from "../../ui/Form";
 import Rules from "../Rules/Rules";
 import "./startGame.css";
 import { saveImgToLocalStorage } from "../../features/saveImgToLocalStorage";
+import Loader from "../../ui/Loader/Loader";
+import Header from "../../ui/Header/Header";
+import Modal from "../../ui/Modal/Modal";
 
 function StartGame() {
   const { size, dispatch, url } = useGame();
   const [isOpenRules, setIsOpenRules] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -27,6 +31,7 @@ function StartGame() {
     const nameButton = e.nativeEvent.submitter.name;
     if (nameButton === "openRuls") setIsOpenRules((isOpen) => !isOpen);
     else if (nameButton === "startGame" && data.selectImage === "user") {
+      setIsLoading((isLoading) => !isLoading);
       saveImgToLocalStorage(data.fileImage[0]).then((urlImg) => {
         dispatch({
           type: "startGame",
@@ -38,8 +43,9 @@ function StartGame() {
             sizeField: Number(data.sizeField),
           },
         });
-        getRandomBrokenImage(size, urlImg).then((res) => {
+        getRandomBrokenImage(data.sizeField, urlImg).then((res) => {
           dispatch({ type: "loadData", payload: res });
+          setIsLoading((isLoading) => !isLoading);
           navigate("/playingField");
         });
       });
@@ -54,18 +60,21 @@ function StartGame() {
           sizeField: Number(data.sizeField),
         },
       });
-      getRandomBrokenImage(size, url).then((res) => {
+      getRandomBrokenImage(data.sizeField, url).then((res) => {
         dispatch({ type: "loadData", payload: res });
         navigate("/playingField");
       });
     }
   }
+
   return (
     <Сontainer>
+      <Header>Пятнашки с изображением</Header>
+      {isLoading && <Loader />}
       {isOpenRules && (
         <Rules
-          size={size}
           onClick={() => setIsOpenRules((isOpen) => !isOpen)}
+          size={size}
         />
       )}
       <div className="container">

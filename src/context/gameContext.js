@@ -35,6 +35,7 @@ function reducer(state, action) {
     case "loadData":
       return {
         ...state,
+        drivingDirections: initialState.drivingDirections,
         brokenImage: action.payload,
       };
     case "ArrowUp": {

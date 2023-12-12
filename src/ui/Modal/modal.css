@@ -1,4 +1,18 @@
-/* .container-ruls {
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.overlay {
+}
+.modal-window {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -8,10 +22,9 @@
   border-radius: 20px;
   background-color: #fff;
   animation-duration: 0.1s;
-  animation-name: opacityRuls;
+  animation-name: opacity-on;
 }
-
-@keyframes opacityRuls {
+@keyframes opacity-on {
   from {
     opacity: 0;
   }
@@ -20,38 +33,26 @@
     opacity: 1;
   }
 }
-.header-ruls {
+
+.modal-header {
   display: flex;
   justify-content: space-between;
   padding: 3rem;
   padding-bottom: 0;
 }
-.text-ruls {
+.modal-content {
   padding: 4rem;
   padding-top: 0;
-} */
-.list-ruls {
-  font-size: 1.6rem;
 }
-.list-items {
-  margin-bottom: 1rem;
-  list-style-type: none;
-}
-.list-items:last-child {
-  margin-bottom: 0;
-}
-/* .btn-ruls {
+.btn {
   border: none;
   background-color: #fff;
   font-size: 3.2rem;
   cursor: pointer;
 }
-.btn-ruls:hover {
+.btn:hover {
   color: blue;
 }
-.btn-ruls:active {
+.btn:active {
   color: blue;
-}*/
-.header-items {
-  font-weight: 600;
 }

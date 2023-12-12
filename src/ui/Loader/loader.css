@@ -1,0 +1,8 @@
+.box-loader {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0px;
+  z-index: 1;
+}
