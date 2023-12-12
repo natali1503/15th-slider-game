@@ -86,6 +86,10 @@ function reducer(state, action) {
             getIndexNull(state.brokenImage) + state.moveStep <= state.size - 1,
         },
       };
+    case "endGame":
+      return {
+        ...initialState,
+      };
     default:
       throw new Error("Неизвестный тип");
   }

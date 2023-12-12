@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { getRandomBrokenImage } from "../../features/getRandomBrokenImage";
@@ -17,6 +17,8 @@ function StartGame() {
   const { size, dispatch, url } = useGame();
   const [isOpenRules, setIsOpenRules] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingUserImg, setIsLoadingUserImg] = useState(false);
+  const [userImg, setUserImg] = useState("");
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -26,28 +28,28 @@ function StartGame() {
   } = useForm();
 
   const watchSelectImage = watch("selectImage") === "user";
+  const watchFileImage = watch("fileImage", false);
+  const watchChangeFileImage = watch("fileImage", false).length === 1;
 
   function onSubmit(data, e) {
     const nameButton = e.nativeEvent.submitter.name;
     if (nameButton === "openRuls") setIsOpenRules((isOpen) => !isOpen);
     else if (nameButton === "startGame" && data.selectImage === "user") {
       setIsLoading((isLoading) => !isLoading);
-      saveImgToLocalStorage(data.fileImage[0]).then((urlImg) => {
-        dispatch({
-          type: "startGame",
-          payload: {
-            image: {
-              selectImage: data.selectImage,
-              fileImage: urlImg,
-            },
-            sizeField: Number(data.sizeField),
+      dispatch({
+        type: "startGame",
+        payload: {
+          image: {
+            selectImage: data.selectImage,
+            fileImage: userImg,
           },
-        });
-        getRandomBrokenImage(data.sizeField, urlImg).then((res) => {
-          dispatch({ type: "loadData", payload: res });
-          setIsLoading((isLoading) => !isLoading);
-          navigate("/playingField");
-        });
+          sizeField: Number(data.sizeField),
+        },
+      });
+      getRandomBrokenImage(data.sizeField, userImg).then((res) => {
+        dispatch({ type: "loadData", payload: res });
+        setIsLoading((isLoading) => !isLoading);
+        navigate("/playingField");
       });
     } else if (nameButton === "startGame" && data.selectImage === "standart") {
       dispatch({
@@ -67,10 +69,27 @@ function StartGame() {
     }
   }
 
+  useEffect(
+    function () {
+      if (!watchChangeFileImage) {
+        return;
+      } else {
+        setIsLoadingUserImg((isLoading) => !isLoading);
+
+        saveImgToLocalStorage(watchFileImage[0]).then((urlImg) => {
+          setUserImg(() => urlImg);
+          setIsLoadingUserImg((isLoading) => !isLoading);
+        });
+      }
+      return;
+    },
+    [watchFileImage, setIsLoadingUserImg, setUserImg, watchChangeFileImage]
+  );
+
   return (
     <Сontainer>
       <Header>Пятнашки с изображением</Header>
-      {isLoading && <Loader />}
+      {(isLoading || isLoadingUserImg) && <Loader />}
       {isOpenRules && (
         <Rules
           onClick={() => setIsOpenRules((isOpen) => !isOpen)}
@@ -161,7 +180,13 @@ function StartGame() {
           </div>
         </Form>
         <div className="game-image-preview">
-          <img className="img" src={!watchSelectImage ? url : ""} alt="" />
+          {!watchSelectImage && <img className="img" src={url} alt="" />}
+          {watchSelectImage && !watchChangeFileImage && (
+            <p>Загрузи изображение</p>
+          )}
+          {watchSelectImage && watchChangeFileImage && !isLoadingUserImg && (
+            <img className="img" src={userImg} alt="" />
+          )}
         </div>
       </div>
     </Сontainer>

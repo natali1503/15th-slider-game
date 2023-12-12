@@ -6,17 +6,16 @@ import {
   HiChevronDoubleUp,
 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { IoCloseSharp } from "react-icons/io5";
 import Button from "../../ui/Button";
-import EmptyPart from "../../ui/EmptyPart/EmptyPart";
+import Modal from "../../ui/Modal/Modal";
 import Сontainer from "../../ui/Сontainer";
 import Loader from "../../ui/Loader/Loader";
 import PartOfImage from "../../ui/PartOfImage";
+import EmptyPart from "../../ui/EmptyPart/EmptyPart";
 import { useGame } from "../../context/gameContext";
 import { checkVictory } from "../../features/checkVictory";
 import { getRandomBrokenImage } from "../../features/getRandomBrokenImage";
 import "./field.css";
-import Modal from "../../ui/Modal/Modal";
 
 function Field() {
   const { isGame, brokenImage, dispatch, drivingDirections, size, url } =
@@ -77,7 +76,13 @@ function Field() {
       {isLoading && <Loader />}
       <div className="box">
         <div className="btn-menu">
-          <Button className="button" onClick={() => navigate("/")}>
+          <Button
+            className="button"
+            onClick={() => {
+              dispatch({ type: "endGame" });
+              navigate("/");
+            }}
+          >
             Вернуться в меню
           </Button>
           <Button className="button" onClick={() => handleClickNewGame()}>
