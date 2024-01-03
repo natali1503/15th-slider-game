@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/15th-slider-game/static/css/main.951c0eb0.css",
-    "main.js": "/15th-slider-game/static/js/main.7e24b637.js",
+    "main.js": "/15th-slider-game/static/js/main.fcfcadf3.js",
     "index.html": "/15th-slider-game/index.html",
     "main.951c0eb0.css.map": "/15th-slider-game/static/css/main.951c0eb0.css.map",
-    "main.7e24b637.js.map": "/15th-slider-game/static/js/main.7e24b637.js.map"
+    "main.fcfcadf3.js.map": "/15th-slider-game/static/js/main.fcfcadf3.js.map"
   },
   "entrypoints": [
     "static/css/main.951c0eb0.css",
-    "static/js/main.7e24b637.js"
+    "static/js/main.fcfcadf3.js"
   ]
 }
