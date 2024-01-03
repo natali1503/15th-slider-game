@@ -66,13 +66,13 @@ function Field() {
   );
   useEffect(
     function () {
-      if (!isGame) navigate("/");
+      if (!isGame) navigate("/15th-slider-game");
     },
     [isGame, navigate]
   );
   useEffect(
     function () {
-      if (checkVictory(brokenImage)) navigate("/victory");
+      if (checkVictory(brokenImage)) navigate("/15th-slider-game/victory");
     },
     [brokenImage, navigate]
   );
@@ -104,7 +104,7 @@ function Field() {
             className="oval"
             onClick={() => {
               dispatch({ type: "endGame" });
-              navigate("/");
+              navigate("/15th-slider-game");
             }}
           >
             Назад

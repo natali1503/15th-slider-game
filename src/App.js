@@ -6,15 +6,15 @@ import Victory from "./pages/Victory/Victory";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/15th-slider-game",
     element: <StartGame />,
   },
   {
-    path: "/playingField",
+    path: "/15th-slider-game/playingField",
     element: <Field />,
   },
   {
-    path: "/victory",
+    path: "/15th-slider-game/victory",
     element: <Victory />,
   },
 ]);

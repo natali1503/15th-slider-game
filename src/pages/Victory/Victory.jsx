@@ -6,7 +6,7 @@ function Victory() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/playingField");
+    navigate("/15th-slider-game/playingField");
   }
   return (
     <div className="container-main">
