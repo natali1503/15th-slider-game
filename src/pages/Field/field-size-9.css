@@ -1,0 +1,43 @@
+.field-size-9 {
+  display: grid;
+  grid-template-columns: repeat(3, 18rem);
+  grid-template-rows: repeat(3, 18rem);
+  gap: 0.3rem;
+  margin: 0 auto;
+}
+@media (max-height: 600px) {
+  .field-size-9 {
+    grid-template-columns: repeat(3, 12rem);
+    grid-template-rows: repeat(3, 12rem);
+  }
+}
+/* @media (min-width: 900px) {
+  .field-size-9 {
+    grid-template-columns: repeat(3, 25rem);
+    grid-template-rows: repeat(3, 25rem);
+  }
+} */
+@media (max-width: 550px) {
+  .field-size-9 {
+    grid-template-columns: repeat(3, 15rem);
+    grid-template-rows: repeat(3, 15rem);
+  }
+}
+@media (max-width: 450px) {
+  .field-size-9 {
+    grid-template-columns: repeat(3, 11rem);
+    grid-template-rows: repeat(3, 11rem);
+  }
+}
+@media (max-width: 400px) {
+  .field-size-9 {
+    grid-template-columns: repeat(3, 10rem);
+    grid-template-rows: repeat(3, 10rem);
+  }
+}
+@media (max-width: 300px) {
+  .field-size-9 {
+    grid-template-columns: repeat(3, 9rem);
+    grid-template-rows: repeat(3, 9rem);
+  }
+}

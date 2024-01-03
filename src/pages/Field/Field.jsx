@@ -6,17 +6,20 @@ import {
   HiChevronDoubleUp,
 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import Button from "../../ui/Button";
+import Button from "../../ui/Button/Button";
 import Modal from "../../ui/Modal/Modal";
-import Сontainer from "../../ui/Сontainer";
 import Loader from "../../ui/Loader/Loader";
-import PartOfImage from "../../ui/PartOfImage";
+import PartOfImage from "../../ui/PartOfImage/PartOfImage";
 import EmptyPart from "../../ui/EmptyPart/EmptyPart";
 import { useGame } from "../../context/gameContext";
 import { checkVictory } from "../../features/checkVictory";
 import { getRandomBrokenImage } from "../../features/getRandomBrokenImage";
 import "./field.css";
-
+import "./field-size-16.css";
+import "./field-size-9.css";
+import "./field-size-25.css";
+import Header from "../../ui/Header/Header";
+import Footer from "../../ui/Footer/Footer";
 function Field() {
   const { isGame, brokenImage, dispatch, drivingDirections, size, url } =
     useGame();
@@ -73,6 +76,17 @@ function Field() {
     },
     [brokenImage, navigate]
   );
+  useEffect(
+    function () {
+      if (isShowImage) {
+        document.body.classList.add("active-modal");
+      } else {
+        document.body.classList.remove("active-modal");
+      }
+    },
+    [isShowImage]
+  );
+
   function handleClickNewGame() {
     setIsLoading((isLoading) => !isLoading);
     getRandomBrokenImage(size, url).then((res) => {
@@ -82,29 +96,32 @@ function Field() {
   }
 
   return (
-    <Сontainer>
+    <div className="container-main">
       {isLoading && <Loader />}
-      <div className="box">
+      <Header>
         <div className="btn-menu">
           <Button
-            className="button"
+            className="oval"
             onClick={() => {
               dispatch({ type: "endGame" });
               navigate("/");
             }}
           >
-            Вернуться в меню
+            Назад
           </Button>
-          <Button className="button" onClick={() => handleClickNewGame()}>
-            Начать сначала
+          <Button className="oval" onClick={() => handleClickNewGame()}>
+            С начала
           </Button>
           <Button
-            className="button"
+            className="oval"
             onClick={() => setIsShowImage((isShow) => !isShow)}
           >
-            Показать картинку
+            Подсказка
           </Button>
         </div>
+      </Header>
+
+      <div className="content-field">
         <div className={`field-size-${size}`}>
           {brokenImage.map((part, index) =>
             part.image !== null ? (
@@ -147,15 +164,18 @@ function Field() {
             )
           )}
         </div>
-        {isShowImage && (
-          <Modal
-            onClick={() => setIsShowImage((isShow) => !isShow)}
-            header="Собери картинку"
-            content={<img src={url} alt="" className="img-show" />}
-          />
-        )}
       </div>
-    </Сontainer>
+      {isShowImage && (
+        <Modal
+          onClick={() => setIsShowImage((isShow) => !isShow)}
+          header="Собери картинку"
+          content={<img src={url} alt="" className="img-show" />}
+        />
+      )}
+      <Footer>
+        <img src="./Group 1 (1).svg" alt="" className="img-footer" />
+      </Footer>
+    </div>
   );
 }
 

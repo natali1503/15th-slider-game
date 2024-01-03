@@ -1,10 +1,40 @@
 .emptyPart {
-  /* width: 150px;
-  height: 150px; */
   display: grid;
   width: 100%;
   height: 100%;
   grid-template-columns: 3.2rem 1fr 3.2rem;
   grid-template-rows: 3.2rem 1fr 3.2rem;
-  border: 1px solid black;
+  background-color: #e9ecef;
+  z-index: 1;
+}
+/* #ced4da */
+.btn-direction {
+  border: none;
+  cursor: pointer;
+  border-radius: 2rem;
+  background-color: #34a0a4;
+  transition: background-color 0.7s;
+}
+.btn-direction:hover {
+  background-color: #168aad;
+}
+.direction-up {
+  grid-column: 2/3;
+}
+.direction-right {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+.direction-down {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+.direction-left {
+  grid-row: 2/3;
+}
+@media (max-height: 450px) {
+  .emptyPart {
+    grid-template-columns: 2rem 1fr 2rem;
+    grid-template-rows: 2rem 1fr 2rem;
+  }
 }

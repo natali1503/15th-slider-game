@@ -1,3 +1,4 @@
+import "./partOfImage.css";
 function PartOfImage({ src, index, onKeyDown }) {
   return (
     <div key={index} onKeyDown={onKeyDown} className="part-image-box">

@@ -1,0 +1,32 @@
+.field-size-25 {
+  display: grid;
+  grid-template-columns: repeat(5, 10rem);
+  grid-template-rows: repeat(5, 10rem);
+  gap: 0.3rem;
+  margin: 0 auto;
+}
+@media (max-width: 550px) {
+  .field-size-25 {
+    grid-template-columns: repeat(5, 8rem);
+    grid-template-rows: repeat(5, 8rem);
+  }
+}
+@media (max-width: 450px) {
+  .field-size-25 {
+    grid-template-columns: repeat(5, 7rem);
+    grid-template-rows: repeat(5, 7rem);
+  }
+}
+@media (max-height: 600px) {
+  .field-size-25 {
+    grid-template-columns: repeat(5, 8.5rem);
+    grid-template-rows: repeat(5, 8.5rem);
+  }
+}
+
+@media (max-height: 450px) {
+  .field-size-25 {
+    grid-template-columns: repeat(5, 7rem);
+    grid-template-rows: repeat(5, 7rem);
+  }
+}

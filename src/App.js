@@ -1,8 +1,9 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./App.css";
 import StartGame from "./pages/StartGame/StartGame";
 import Field from "./pages/Field/Field";
-import "./App.css";
-import Victory from "./pages/Victory";
+import Victory from "./pages/Victory/Victory";
+
 const router = createBrowserRouter([
   {
     path: "/",

@@ -1,0 +1,52 @@
+.button {
+  border: none;
+  font-size: 1.8rem;
+  width: auto;
+  height: 100%;
+  border-radius: 55px;
+  cursor: pointer;
+  background-color: #34a0a4;
+  color: #efecec;
+  font-weight: 500;
+  transition: background-color 0.7s;
+}
+.button:hover {
+  background-color: #168aad;
+}
+.round {
+  padding: 0.3rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+}
+.round svg {
+  font-size: 6rem;
+  align-self: center;
+}
+.oval {
+  padding: 1.2rem 2.4rem;
+}
+@media (max-width: 850px) {
+  .button {
+    font-size: 1.6rem;
+  }
+  .oval {
+    padding: 1rem 2.2rem;
+  }
+}
+@media (max-width: 400px) {
+  .button {
+    font-size: 1rem;
+  }
+  .oval {
+    padding: 1rem 2rem;
+  }
+}
+/* @media (min-width: 900px) {
+  .button {
+    font-size: 2.4rem;
+  }
+  .oval {
+    padding: 1.6rem 2.8rem;
+  }
+} */

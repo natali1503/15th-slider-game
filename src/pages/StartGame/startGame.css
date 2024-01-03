@@ -1,3 +1,67 @@
+.content-startGame {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+  align-items: center;
+}
 .form {
-  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.row-form {
+  margin: 3.2rem;
+  margin-top: 0;
+}
+.question {
+  margin-bottom: 0.8rem;
+}
+.answer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.8rem;
+}
+.label {
+  margin-bottom: 0.4rem;
+}
+.input {
+  margin-right: 0.8rem;
+}
+.error-form {
+  font-size: 1.4rem;
+  color: #b5e48c;
+}
+.button-menu {
+  display: flex;
+  justify-content: space-around;
+}
+.game-image-preview {
+  flex-basis: 40rem;
+}
+.img {
+  width: 100%;
+}
+@media (max-width: 850px) {
+  .content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .row-form {
+    margin: 0.8rem;
+    margin-top: 0;
+  }
+  .form {
+    padding-bottom: 0.8rem;
+  }
+  .game-image-preview {
+    flex-basis: 35rem;
+  }
+}
+@media (max-width: 400px) {
+  .content {
+    width: 90%;
+    align-items: stretch;
+  }
 }

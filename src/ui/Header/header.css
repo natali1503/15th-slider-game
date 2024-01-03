@@ -1,7 +1,32 @@
 .header {
   font-size: 3.2rem;
+  font-weight: 500;
+  color: #168aad;
 }
 .box-header {
   text-align: center;
   padding: 3rem 0;
+  width: 60%;
+  margin: 0 auto;
+}
+@media (max-width: 950px) {
+  .box-header {
+    padding: 2rem 0;
+  }
+  .header {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 650px) {
+  .box-header {
+    width: 90%;
+  }
+  .header {
+    font-size: 2.4rem;
+  }
+}
+@media (min-width: 900px) {
+  .box-header {
+    padding: 4rem 0;
+  }
 }

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { getRandomBrokenImage } from "../../features/getRandomBrokenImage";
+
 import { useGame } from "../../context/gameContext";
-import Сontainer from "../../ui/Сontainer";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import Rules from "../Rules/Rules";
-import "./startGame.css";
+import { getRandomBrokenImage } from "../../features/getRandomBrokenImage";
 import { saveImgToLocalStorage } from "../../features/saveImgToLocalStorage";
-import Loader from "../../ui/Loader/Loader";
+import Footer from "../../ui/Footer/Footer";
 import Header from "../../ui/Header/Header";
+import "./startGame.css";
+import Loader from "../../ui/Loader/Loader";
+import Button from "../../ui/Button/Button";
+import Rules from "../Rules/Rules";
 
 function StartGame() {
   const { size, dispatch, url } = useGame();
@@ -84,19 +84,30 @@ function StartGame() {
     },
     [watchFileImage, setIsLoadingUserImg, setUserImg, watchChangeFileImage]
   );
+  useEffect(
+    function () {
+      if (isOpenRules) {
+        document.body.classList.add("active-modal");
+      } else {
+        document.body.classList.remove("active-modal");
+      }
+    },
+    [isOpenRules]
+  );
 
   return (
-    <Сontainer>
+    <div className="container-main">
       <Header>Пятнашки с изображением</Header>
       {(isLoading || isLoadingUserImg) && <Loader />}
       {isOpenRules && (
         <Rules
           onClick={() => setIsOpenRules((isOpen) => !isOpen)}
           size={size}
+          isOpen={isOpenRules}
         />
       )}
-      <div className="container">
-        <Form onSubmit={handleSubmit(onSubmit)}>
+      <div className="content-startGame">
+        <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="row-form">
             <div className="question"> Выбери изображание для игры:</div>
             <div className="answer">
@@ -170,14 +181,14 @@ function StartGame() {
             </div>
           </div>
           <div className="button-menu">
-            <Button className="button" name="startGame">
-              Начать игру
+            <Button name="startGame" className="oval">
+              Играть
             </Button>
-            <Button className="button" name="openRuls">
+            <Button name="openRuls" className="oval">
               Правила
             </Button>
           </div>
-        </Form>
+        </form>
         <div className="game-image-preview">
           {!watchSelectImage && <img className="img" src={url} alt="" />}
           {watchSelectImage && !watchChangeFileImage && (
@@ -188,7 +199,10 @@ function StartGame() {
           )}
         </div>
       </div>
-    </Сontainer>
+      <Footer>
+        <img className="img-footer" src="./Group 1.svg" alt="" />
+      </Footer>
+    </div>
   );
 }
 

@@ -7,22 +7,24 @@
   right: 0;
   bottom: 0;
   position: fixed;
-
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
 }
-.overlay {
+.modal {
+  overflow-y: scroll;
 }
 .modal-window {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 15% 10%;
+  width: 60%;
+  margin: 5% 20%;
   position: absolute;
-  border: 1px solid;
+  /* border: 1px solid #e9ecef; */
   border-radius: 20px;
-  background-color: #fff;
+  background-color: #e9ecef;
   animation-duration: 0.1s;
   animation-name: opacity-on;
+  z-index: 2;
 }
 @keyframes opacity-on {
   from {
@@ -33,26 +35,42 @@
     opacity: 1;
   }
 }
-
 .modal-header {
   display: flex;
   justify-content: space-between;
-  padding: 3rem;
+  padding: 2.5rem;
   padding-bottom: 0;
+  color: #168aad;
 }
 .modal-content {
-  padding: 4rem;
-  padding-top: 0;
+  max-width: 100%; /* Максимальная ширина не превышает ширину родительского контейнера */
+  height: 100%;
+  overflow: hidden;
+  padding: 3.5rem;
+  padding-top: 2rem;
+  overflow-y: scroll;
 }
 .btn {
   border: none;
-  background-color: #fff;
   font-size: 3.2rem;
   cursor: pointer;
 }
-.btn:hover {
-  color: blue;
+body.active-modal {
+  overflow-y: hidden;
 }
-.btn:active {
-  color: blue;
+@media (max-width: 850px) {
+  .modal-window {
+    width: 90%;
+    margin: 5%;
+  }
+  .modal-content {
+    font-size: 1.2rem;
+    padding: 2rem;
+  }
+}
+@media (max-height: 550px) and (max-width: 850px) {
+  .modal-window {
+    width: 70%;
+    margin: 5% 15%;
+  }
 }

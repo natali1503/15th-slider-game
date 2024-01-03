@@ -2,7 +2,7 @@ import "./header.css";
 function Header({ children }) {
   return (
     <div className="box-header">
-      <h1 className="header">{children}</h1>
+      <header className="header">{children}</header>
     </div>
   );
 }

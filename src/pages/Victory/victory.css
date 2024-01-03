@@ -1,0 +1,24 @@
+.content-victory {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+.text-victory {
+  font-size: 2.4rem;
+  transition: color 0.5s;
+  animation: color-text-victory 5s linear infinite alternate;
+  text-align: center;
+}
+@keyframes color-text-victory {
+  0% {
+    color: #34a0a4;
+  }
+  100% {
+    color: #168aad;
+  }
+}
