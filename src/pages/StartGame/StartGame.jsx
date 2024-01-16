@@ -200,7 +200,11 @@ function StartGame() {
         </div>
       </div>
       <Footer>
-        <img className="img-footer" src="./Group 1.svg" alt="" />
+        <img
+          className="img-footer"
+          src="./15th-slider-game/Group 1.svg"
+          alt=""
+        />
       </Footer>
     </div>
   );

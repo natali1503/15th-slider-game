@@ -5,8 +5,7 @@ import { isMoved } from "../features/isMoved";
 
 const initialState = {
   size: 16,
-  url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ2zgLauMnxfVrrLoVZPgP2bokLkPjVeX10Q&usqp=CAU",
-  //https://i.pinimg.com/736x/07/32/6c/07326c595630f8b71cde53df817b397e.jpg
+  url: "https://images.unsplash.com/photo-1579677359441-a59fa83ecc40?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   isGame: false,
   brokenImage: [],
   drivingDirections: {
