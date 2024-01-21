@@ -1,22 +1,28 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  // createBrowserRouter,
+  createHashRouter,
+} from "react-router-dom";
 import "./App.css";
 import StartGame from "./pages/StartGame/StartGame";
 import Field from "./pages/Field/Field";
 import Victory from "./pages/Victory/Victory";
+import Error from "./ui/Error/Error";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: "/15th-slider-game",
+    path: "/",
     element: <StartGame />,
   },
   {
-    path: "/15th-slider-game/playingField",
+    path: "/playingField",
     element: <Field />,
   },
   {
-    path: "/15th-slider-game/victory",
+    path: "/victory",
     element: <Victory />,
   },
+  { path: "*", element: <Error /> },
 ]);
 const App = () => {
   return <RouterProvider router={router} />;

@@ -6,7 +6,7 @@ function Victory() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/15th-slider-game/playingField");
+    navigate("/playingField");
   }
   return (
     <div className="container-main">
@@ -20,7 +20,7 @@ function Victory() {
       </div>
 
       <Footer>
-        <img className="img-footer" src="./Group 1.svg" alt="" />
+        <img className="img-footer" src="Group 1.svg" alt="" />
       </Footer>
     </div>
   );

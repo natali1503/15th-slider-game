@@ -48,7 +48,7 @@ function StartGame() {
       getRandomBrokenImage(data.sizeField, userImg).then((res) => {
         dispatch({ type: "loadData", payload: res });
         setIsLoading((isLoading) => !isLoading);
-        navigate("/15th-slider-game/playingField");
+        navigate("/playingField");
       });
     } else if (nameButton === "startGame" && data.selectImage === "standart") {
       dispatch({
@@ -63,7 +63,7 @@ function StartGame() {
       });
       getRandomBrokenImage(data.sizeField, url).then((res) => {
         dispatch({ type: "loadData", payload: res });
-        navigate("/15th-slider-game/playingField");
+        navigate("/playingField");
       });
     }
   }
@@ -200,7 +200,7 @@ function StartGame() {
         </div>
       </div>
       <Footer>
-        <img className="img-footer" src="./Group 1.svg" alt="" />
+        <img className="img-footer" src="Group 1.svg" alt="" />
       </Footer>
     </div>
   );

@@ -66,13 +66,13 @@ function Field() {
   );
   useEffect(
     function () {
-      if (!isGame) navigate("/15th-slider-game");
+      if (!isGame) navigate("/");
     },
     [isGame, navigate]
   );
   useEffect(
     function () {
-      if (checkVictory(brokenImage)) navigate("/15th-slider-game/victory");
+      if (checkVictory(brokenImage)) navigate("/victory");
     },
     [brokenImage, navigate]
   );
@@ -104,7 +104,7 @@ function Field() {
             className="oval"
             onClick={() => {
               dispatch({ type: "endGame" });
-              navigate("/15th-slider-game");
+              navigate("/");
             }}
           >
             Назад
@@ -173,7 +173,7 @@ function Field() {
         />
       )}
       <Footer>
-        <img src="./Group 1 (1).svg" alt="" className="img-footer" />
+        <img src="Group 1 (1).svg" alt="" className="img-footer" />
       </Footer>
     </div>
   );

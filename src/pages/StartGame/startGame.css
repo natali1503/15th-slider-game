@@ -59,6 +59,11 @@
     flex-basis: 35rem;
   }
 }
+@media (max-width: 650px) {
+  .content-startGame {
+    flex-direction: column;
+  }
+}
 @media (max-width: 400px) {
   .content {
     width: 90%;
